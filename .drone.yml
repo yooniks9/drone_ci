@@ -7,14 +7,12 @@ platform:
   arch: amd64
 
 steps:
-- name: php
+- name: backend
   pull: if-not-exists
   image: composer:1.9.1
   commands:
   - cp .env.example .env
-  - ls -alh
   - composer install
-  - ls -alh
 
 - name: frontend
   pull: if-not-exists
@@ -22,16 +20,14 @@ steps:
   commands:
   - npm i
   - npm run production
-  - pwd
   - find . -type f -exec chmod 664 {} +
   - find . -type d -exec chmod 775 {} +
   - chmod +x artisan
   - chown -R www-data:www-data .
   - rm -rf .git
   - rm .env
-  - ls -alh
 
-- name: Deploy
+- name: deploy
   image: appleboy/drone-scp
   settings:
     host:
@@ -42,6 +38,3 @@ steps:
       from_secret: SSH_PRIVATE_KEY
     source: ./
     target: /var/www/drone_ci
-
-
-
