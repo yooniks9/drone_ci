@@ -29,16 +29,15 @@ steps:
   - sudo chown -R www-data:www-data .
   - ls -alh
 
-- name: Deploy to server without git & .env
-  deploy:
-    image: drillster/drone-rsync
-    hosts:
-      from_secret: SSH_SERVER
-    user:
-      from_secret: SSH_USER
-    key:
-      from_secret: SSH_PRIVATE_KEY
-    source: *
-    target: /var/www/drone_ci
-    include: [ "*.**" ]
-    exclude: [ ".git*", ".env" ]
+# - name: Deploy to server without git & .env
+#   deploy:
+#     image: drillster/drone-rsync
+#     hosts:
+#       from_secret: SSH_SERVER
+#     user:
+#       from_secret: SSH_USER
+#     key:
+#       from_secret: SSH_PRIVATE_KEY
+#     source: ./
+#     target: /var/www/drone_ci
+#     exclude: [ ".git*", ".env" ]
