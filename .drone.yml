@@ -7,6 +7,15 @@ platform:
   arch: amd64
 
 steps:
+- name: php
+  pull: if-not-exists
+  image: composer:1.9.1
+  commands:
+  - cp .env.example .env
+  - ls -alh
+  - composer install
+  - ls -alh
+
 - name: frontend
   pull: if-not-exists
   image: node:10.18.1
