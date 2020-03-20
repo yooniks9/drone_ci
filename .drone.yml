@@ -27,15 +27,30 @@ steps:
   - find . -type d -exec chmod 775 {} +
   - chmod +x artisan
   - chown -R www-data:www-data .
+  - rm -rf .git
+  - rm .env
   - ls -alh
 
-- name: Deploy to server without git & .env
-  image: drillster/drone-rsync
-  hosts:
-    from_secret: SSH_SERVER
-  user: drone_runner
-  key:
-    from_secret: SSH_PRIVATE_KEY
+- name: Deploy
+  image: appleboy/drone-scp
+  settings:
+    host:
+      from_secret: SSH_SERVER
+    user:
+      from_secret: SSH_USER
+    key:
+      from_secret: SSH_PRIVATE_KEY
   source: ./
   target: /var/www/drone_ci
-  exclude: [ ".git*", ".env" ]
+
+# - name: Deploy to server without git & .env
+#   image: drillster/drone-rsync
+#   hosts:
+#     from_secret: SSH_SERVER
+#   user:
+#     from_secret: SSH_USER
+#   key:
+#     from_secret: SSH_PRIVATE_KEY
+#   source: ./
+#   target: /var/www/drone_ci
+#   exclude: [ ".git*", ".env" ]
