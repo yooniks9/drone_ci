@@ -12,3 +12,5 @@ steps:
   image: node:10.18.1
   commands:
   - npm i
+  - ls -alh
+  - pwd
