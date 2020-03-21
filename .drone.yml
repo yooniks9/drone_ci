@@ -38,3 +38,9 @@ steps:
       from_secret: SSH_PRIVATE_KEY
     source: ./
     target: /var/www/drone_ci
+
+trigger:
+  branch:
+  - develop
+  event:
+  - push
