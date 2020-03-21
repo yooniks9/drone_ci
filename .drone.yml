@@ -48,7 +48,7 @@ trigger:
 ---
 kind: pipeline
 type: exec
-name: default
+name: host
 
 platform:
   os: linux
