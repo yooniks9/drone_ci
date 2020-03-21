@@ -41,6 +41,26 @@ steps:
 
 trigger:
   branch:
+  - develop
+  event:
+  - push
+
+---
+kind: pipeline
+type: exec
+name: host
+
+platform:
+  os: linux
+  arch: amd64
+
+steps:
+- name: backend
+  commands:
+  - touch /var/www/testfile
+
+trigger:
+  branch:
   - master
   event:
   - push
