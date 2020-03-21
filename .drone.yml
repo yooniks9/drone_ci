@@ -55,9 +55,10 @@ platform:
   arch: amd64
 
 steps:
-- name: backend
+- name: command
   commands:
-  - touch /var/www/testfile
+  - pwd
+  - ls -alh
 
 trigger:
   branch:
