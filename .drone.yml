@@ -7,23 +7,23 @@ platform:
   arch: amd64
 
 steps:
-- name: backend
-  image: composer:1.9.1
-  commands:
-  - cp .env.example .env
-  - composer install
+# - name: backend
+#   image: composer:1.9.1
+#   commands:
+#   - cp .env.example .env
+#   - composer install
 
-- name: frontend
-  image: node:10.18.1
-  commands:
-  - npm i
-  - npm run production
-  - find . -type f -exec chmod 664 {} +
-  - find . -type d -exec chmod 775 {} +
-  - chmod +x artisan
-  - chown -R www-data:www-data .
-  - rm -rf .git
-  - rm .env
+# - name: frontend
+#   image: node:10.18.1
+#   commands:
+#   - npm i
+#   - npm run production
+#   - find . -type f -exec chmod 664 {} +
+#   - find . -type d -exec chmod 775 {} +
+#   - chmod +x artisan
+#   - chown -R www-data:www-data .
+#   - rm -rf .git
+#   - rm .env
 
 - name: deploy
   image: appleboy/drone-scp
