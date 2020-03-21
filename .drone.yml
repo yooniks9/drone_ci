@@ -8,14 +8,12 @@ platform:
 
 steps:
 - name: backend
-  pull: if-not-exists
   image: composer:1.9.1
   commands:
   - cp .env.example .env
   - composer install
 
 - name: frontend
-  pull: if-not-exists
   image: node:10.18.1
   commands:
   - npm i
