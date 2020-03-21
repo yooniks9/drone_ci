@@ -12,6 +12,7 @@ steps:
 #   commands:
 #   - cp .env.example .env
 #   - composer install
+#   - rm .env
 
 - name: frontend
   image: node:10.18.1
@@ -23,7 +24,6 @@ steps:
   - chmod +x artisan
   - chown -R www-data:www-data .
   - rm -rf .git
-  - rm .env
 
 - name: deploy
   image: appleboy/drone-scp
